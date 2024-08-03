@@ -62,7 +62,7 @@ you can customize it in the following way:
 
 1) create by the path `%kernel.project_dir%/config/packages/` (exactly by this path) the file `grin_way_extensions.yaml` (actually any filename)
 2) override the default values:
-```yaml`
+```yaml
 grin_way_global_instance_of:
     rel_path: config
     filename: _instanceof.yaml
