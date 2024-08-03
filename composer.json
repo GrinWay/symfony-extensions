@@ -1,0 +1,26 @@
+{
+    "name": "grinway/symfony-extensions",
+    "autoload": {
+        "psr-4": {
+            "GrinWay\\Extension\\": "src/"
+        }
+    },
+	"version":		"1.0.0",
+    "type":			"library",
+    "description":	"Various extensions for Symfony applications.",
+    "authors": [
+        {
+            "name":			"Grigory Koblitskiy",
+			"email":		"grin180898@mail.ru"
+        }
+    ],
+    "keywords": ["grinway", "grinway-extensions"],
+    "license": "MIT",
+    "require": {
+        "php": ">=7",
+        "symfony/config": ">=6",
+        "symfony/filesystem": ">=6",
+        "symfony/dependency-injection": ">=6",
+        "symfony/translation": ">=6"
+    }
+}
