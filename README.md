@@ -7,6 +7,42 @@ These extensions will help you with your Symfony applicaiton:
 | ------------- | ------------- |
 | [GrinWayGlobalInstanceOfExtension](https://github.com/GrinWay/symfony-extensions/blob/main/src/GlobalInstanceOfExtension/GrinWayGlobalInstanceOfExtension.php) | Global setting of `_instanceof.yaml` |
 
+## Installation
+
+### Step 1: Require the bundle
+
+In your `%kernel.project_dir%/composer.json`
+
+```json
+"require": {
+    "grinway/symfony-extensions": "VERSION"
+},
+"repositories": [
+    {
+        "type": "path",
+        "url": "./bundles/grinway/symfony-extensions"
+    }
+]
+```
+
+### Step 2: Download the bundle
+
+### [Before git clone](https://github.com/GrinWay/docs/blob/main/docs/bundles_grin_symfony%20mkdir.md)
+
+```console
+git clone "https://github.com/GrinWay/symfony-extensions.git"
+```
+
+```console
+cd "../../"
+```
+
+```console
+composer require "grinway/symfony-extensions"
+```
+
+### [Binds](https://github.com/GrinWay/docs/blob/main/docs/borrow-services.yaml-section.md)
+
 ## Usage
 
 #### GrinWayGlobalInstanceOfExtension
