@@ -11,8 +11,8 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
-* Assigns tags to the classes that implement interface
-* described in "%kernel.project_dir%/ <relPath> / <filename>"
+* Assigns tags to the services by interfaces
+* described in "%kernel.project_dir%/ <rel_path> / <filename>"
 * only do this for all the project
 *
 * _instanceof.yaml has the same syntax as _instanceof of services.yaml
