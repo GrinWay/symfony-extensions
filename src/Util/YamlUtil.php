@@ -1,26 +1,31 @@
 <?php
 
-namespace GrinWay\Extension;
+namespace GrinWay\Extension\Util;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\PropertyAccess\PropertyAccess;
-use Symfony\Component\DependencyInjection\Extension\Extension;
+use GrinWay\Extension\Config\GlobalInstanceOfDefaults;
 
-abstract class AbstractGrinWayExtension extends Extension
+class YamlUtil
 {
-    public const PREFIX = 'grin_way_extensions';
-
-    protected function getParsedYaml(array $config, ContainerBuilder $container, string $relPathKey, string $filenameKey, bool $first = true, ?string $rootPath = null, bool $throw = false): array
-    {
+    public static function getParsedYaml(
+		array $config,
+		ContainerBuilder $container,
+		string $relPathKey,
+		string $filenameKey,
+		bool $first = true,
+		?string $rootPath = null,
+		bool $throw = false,
+	): array {
         $rootPath = $rootPath ?: $container->getParameter('kernel.project_dir');
 
         $pa = PropertyAccess::createPropertyAccessor();
 
-        $relPath = $pa->getValue($config, '[' . $relPathKey . ']');
-        $filename = $pa->getValue($config, '[' . $filenameKey . ']');
+        $relPath = $pa->getValue($config, '[' . GlobalInstanceOfDefaults::PREFIX . '][' . $relPathKey . ']');
+        $filename = $pa->getValue($config, '[' . GlobalInstanceOfDefaults::PREFIX . '][' . $filenameKey . ']');
 
         ###> just in case
         if (null === $relPath || null === $filename) {

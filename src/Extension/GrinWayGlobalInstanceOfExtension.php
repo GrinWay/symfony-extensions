@@ -1,7 +1,8 @@
 <?php
 
-namespace GrinWay\Extension\GlobalInstanceOfExtension;
+namespace GrinWay\Extension\Extension;
 
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use GrinWay\Extension\AbstractGrinWayExtension;
 use GrinWay\Service\GrinWayServiceExtension;
 use Symfony\Component\Config\FileLocator;
@@ -9,6 +10,9 @@ use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use GrinWay\Extension\Config\GlobalInstanceOfDefaults;
+use GrinWay\Extension\Util\YamlUtil;
+use GrinWay\Extension\Contract\GrinWayExtensionInterface;
 
 /**
 * Assigns tags to the services by interfaces
@@ -44,34 +48,23 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 *       TAG_NAME2:
 *           dop_attr: NAME
 */
-class GrinWayGlobalInstanceOfExtension extends AbstractGrinWayExtension
+class GrinWayGlobalInstanceOfExtension implements GrinWayExtensionInterface
 {
-    public const PREFIX = 'grin_way_global_instance_of';
-    public const REL_PATH_KEY = 'rel_path';
-    public const FILENAME_KEY = 'filename';
-
-    public function getAlias(): string
+	public static function getExtensionRootConfigNode(): string {
+		return GlobalInstanceOfDefaults::PREFIX;
+	}
+	
+    public function load(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        return self::PREFIX;
-    }
-
-    public function load(array $configs, ContainerBuilder $container): void
-    {
-        $configuration = new Configuration(
-            relPath: 'config',
-            filename: '_instanceof.yaml',
-        );
-        $config = $this->processConfiguration($configuration, $configs);
-
         $pa = PropertyAccess::createPropertyAccessor();
-
-        $interfaces = $this->getParsedYaml(
+		
+        $interfaces = YamlUtil::getParsedYaml(
             config: $config,
-            container: $container,
-            relPathKey: self::REL_PATH_KEY,
-            filenameKey: self::FILENAME_KEY,
+            container: $builder,
+            relPathKey: GlobalInstanceOfDefaults::REL_PATH_CONFIG_KEY,
+            filenameKey: GlobalInstanceOfDefaults::FILENAME_CONFIG_KEY,
         );
-
+		
         if (!\is_array($interfaces)) {
             return;
         }
@@ -105,7 +98,7 @@ class GrinWayGlobalInstanceOfExtension extends AbstractGrinWayExtension
                     $tagAttributes = [];
                 }
 
-                $container->registerForAutoconfiguration($interface)
+                $builder->registerForAutoconfiguration($interface)
                     ->addTag($tagName, $tagAttributes)
                     ->setAutoconfigured(true)
                 ;
