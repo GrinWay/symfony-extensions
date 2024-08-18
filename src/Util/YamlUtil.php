@@ -12,14 +12,14 @@ use GrinWay\Extension\Config\GlobalInstanceOfDefaults;
 class YamlUtil
 {
     public static function getParsedYaml(
-		array $config,
-		ContainerBuilder $container,
-		string $relPathKey,
-		string $filenameKey,
-		bool $first = true,
-		?string $rootPath = null,
-		bool $throw = false,
-	): array {
+        array $config,
+        ContainerBuilder $container,
+        string $relPathKey,
+        string $filenameKey,
+        bool $first = true,
+        ?string $rootPath = null,
+        bool $throw = false,
+    ): array {
         $rootPath = $rootPath ?: $container->getParameter('kernel.project_dir');
 
         $pa = PropertyAccess::createPropertyAccessor();
