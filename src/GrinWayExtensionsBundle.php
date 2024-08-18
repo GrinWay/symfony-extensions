@@ -41,15 +41,24 @@ class GrinWayExtensionsBundle extends AbstractBundle
             $class = $builder->findDefinition($id)->getClass();
             $extension = $builder->get($id);
 
-            $enabled = $pa->getValue(
+            $extensionConfig = $pa->getValue(
                 $config,
-                \sprintf('[%s][enabled]', $class::getExtensionRootConfigNode()),
+                \sprintf('[%s]', $class::getExtensionRootConfigNode()),
             );
+            if (null === $extensionConfig) {
+                throw new \LogicException('Looks like you forgotten to provide the whole Extension configuration.');
+            }
+
+            $enabled = $pa->getValue($extensionConfig, '[enabled]');
             if (null === $enabled) {
                 throw new \LogicException('Looks like you forgotten to provide the "enabled" option of Extension.');
             }
             if (true === $enabled) {
-                $extension->load($config, $container, $builder);
+                $extension->load(
+                    $extensionConfig,
+                    $container,
+                    $builder,
+                );
             }
             $builder->removeDefinition($id);
         }
