@@ -5,7 +5,7 @@
 These extensions will help you with your Symfony applicaiton:
 | Extension | Description |
 | ------------- | ------------- |
-| [GrinWayGlobalInstanceOfExtension](https://github.com/GrinWay/symfony-extensions/blob/main/src/GlobalInstanceOfExtension/GrinWayGlobalInstanceOfExtension.php) | Global setting of `_instanceof.yaml` |
+| [GrinWayGlobalInstanceOfExtension](https://github.com/GrinWay/symfony-extensions/blob/main/src/Extension/GrinWayGlobalInstanceOfExtension.php) | Global setting of `_instanceof.yaml` |
 
 ## Installation
 
