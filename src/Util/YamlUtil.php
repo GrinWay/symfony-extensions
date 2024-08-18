@@ -24,8 +24,8 @@ class YamlUtil
 
         $pa = PropertyAccess::createPropertyAccessor();
 
-        $relPath = $pa->getValue($config, '[' . GlobalInstanceOfDefaults::PREFIX . '][' . $relPathKey . ']');
-        $filename = $pa->getValue($config, '[' . GlobalInstanceOfDefaults::PREFIX . '][' . $filenameKey . ']');
+        $relPath = $pa->getValue($config, '[' . $relPathKey . ']');
+        $filename = $pa->getValue($config, '[' . $filenameKey . ']');
 
         ###> just in case
         if (null === $relPath || null === $filename) {
