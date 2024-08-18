@@ -1,0 +1,4 @@
+grin_way_extensions:
+    global_instance_of:
+        rel_path:   config
+        filename:   '_instanceof.yaml'

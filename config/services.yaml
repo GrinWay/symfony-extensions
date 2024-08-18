@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+        
+    GrinWay\Extension\Extension\:
+        resource: '../src/Extension'
+        tags:
+        -   !php/const GrinWay\Extension\GrinWayExtensionsBundle::TAG
