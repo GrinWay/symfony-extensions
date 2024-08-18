@@ -5,15 +5,10 @@ namespace GrinWay\Extension\GlobalInstanceOfExtension;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use GrinWay\Extension\AbstractGrinWayExtension;
+use GrinWay\Extension\Config\GlobalInstanceOfDefaults;
 
 class Configuration implements ConfigurationInterface
 {
-    public function __construct(
-        private $relPath,
-        private $filename,
-    ) {
-    }
-
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder(GrinWayGlobalInstanceOfExtension::PREFIX);
@@ -30,12 +25,12 @@ class Configuration implements ConfigurationInterface
 
                 ->scalarNode(GrinWayGlobalInstanceOfExtension::REL_PATH_KEY)
                     ->info('The relative path to directory where file with _instanceof locates to assign tags globally')
-                    ->defaultValue($this->relPath)
+                    ->defaultValue(GlobalInstanceOfDefaults::REL_PATH)
                 ->end()
 
                 ->scalarNode(GrinWayGlobalInstanceOfExtension::FILENAME_KEY)
                     ->info('The filename with _instanceof content.')
-                    ->defaultValue($this->filename)
+                    ->defaultValue(GlobalInstanceOfDefaults::FILENAME)
                 ->end()
 
             ->end()

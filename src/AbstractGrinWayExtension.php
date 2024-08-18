@@ -8,8 +8,9 @@ use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
-abstract class AbstractGrinWayExtension extends Extension
+abstract class AbstractGrinWayExtension extends ConfigurableExtension
 {
     public const PREFIX = 'grin_way_extensions';
 

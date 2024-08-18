@@ -55,14 +55,8 @@ class GrinWayGlobalInstanceOfExtension extends AbstractGrinWayExtension
         return self::PREFIX;
     }
 
-    public function load(array $configs, ContainerBuilder $container): void
+    protected function loadInternal(array $config, ContainerBuilder $container): void
     {
-        $configuration = new Configuration(
-            relPath: 'config',
-            filename: '_instanceof.yaml',
-        );
-        $config = $this->processConfiguration($configuration, $configs);
-
         $pa = PropertyAccess::createPropertyAccessor();
 
         $interfaces = $this->getParsedYaml(
