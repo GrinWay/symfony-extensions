@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 
 interface GrinWayExtensionInterface
 {
-	public function load(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void;
-	
-	public static function getExtensionRootConfigNode(): string;
+    public function load(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void;
+
+    public static function getExtensionRootConfigNode(): string;
 }

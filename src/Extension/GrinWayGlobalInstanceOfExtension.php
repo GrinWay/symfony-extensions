@@ -50,21 +50,22 @@ use GrinWay\Extension\Contract\GrinWayExtensionInterface;
 */
 class GrinWayGlobalInstanceOfExtension implements GrinWayExtensionInterface
 {
-	public static function getExtensionRootConfigNode(): string {
-		return GlobalInstanceOfDefaults::PREFIX;
-	}
-	
+    public static function getExtensionRootConfigNode(): string
+    {
+        return GlobalInstanceOfDefaults::PREFIX;
+    }
+
     public function load(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         $pa = PropertyAccess::createPropertyAccessor();
-		
+
         $interfaces = YamlUtil::getParsedYaml(
             config: $config,
             container: $builder,
             relPathKey: GlobalInstanceOfDefaults::REL_PATH_CONFIG_KEY,
             filenameKey: GlobalInstanceOfDefaults::FILENAME_CONFIG_KEY,
         );
-		
+
         if (!\is_array($interfaces)) {
             return;
         }
